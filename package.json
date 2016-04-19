@@ -1,0 +1,22 @@
+{
+  "name": "deoscrab",
+  "version": "1.0.0",
+  "description": "A fast Scrabble(TM) game in JavaScript",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/deostroll/jscrab.git"
+  },
+  "keywords": [
+    "scrabble"
+  ],
+  "author": "deostroll <deostroll@gmail.com> (http://twitter.com/deostroll)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/deostroll/jscrab/issues"
+  },
+  "homepage": "https://github.com/deostroll/jscrab#readme"
+}

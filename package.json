@@ -18,5 +18,11 @@
   "bugs": {
     "url": "https://github.com/deostroll/jscrab/issues"
   },
-  "homepage": "https://github.com/deostroll/jscrab#readme"
+  "homepage": "https://github.com/deostroll/jscrab#readme",
+  "devDependencies": {
+    "grunt": "^1.0.1",
+    "grunt-contrib-connect": "^1.0.1",
+    "grunt-contrib-watch": "^1.0.0",
+    "load-grunt-tasks": "^3.5.0"
+  }
 }

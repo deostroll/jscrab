@@ -87,12 +87,28 @@ var g_timers = timers.create();
 function shuffle_pool()
 {
     var total = g_letpool.length;
+    // logit("total: " + total);
     for (var i=0; i<total; i++) {
         var rnd = Math.floor((Math.random()*total));
         var c = g_letpool[i];
         g_letpool[i] = g_letpool[rnd];
         g_letpool[rnd] = c;
     }
+}
+
+//---------------------------------------------------------------------------
+function shuffle_pool_hacked()
+{
+    var total = g_letpool.length;
+    var fixedShuffleJson = "[[0,49],[1,60],[2,61],[3,55],[4,28],[5,100],[6,64],[7,26],[8,80],[9,40],[10,77],[11,57],[12,95],[13,1],[14,53],[15,70],[16,39],[17,55],[18,60],[19,27],[20,28],[21,56],[22,53],[23,69],[24,80],[25,52],[26,32],[27,69],[28,103],[29,86],[30,80],[31,68],[32,66],[33,86],[34,23],[35,52],[36,93],[37,30],[38,81],[39,32],[40,92],[41,42],[42,101],[43,4],[44,55],[45,46],[46,45],[47,99],[48,49],[49,46],[50,86],[51,10],[52,93],[53,31],[54,92],[55,79],[56,12],[57,29],[58,6],[59,23],[60,75],[61,52],[62,40],[63,20],[64,103],[65,100],[66,54],[67,64],[68,40],[69,64],[70,74],[71,19],[72,88],[73,38],[74,4],[75,10],[76,47],[77,10],[78,60],[79,76],[80,78],[81,8],[82,89],[83,21],[84,86],[85,28],[86,17],[87,44],[88,94],[89,3],[90,0],[91,73],[92,82],[93,75],[94,67],[95,89],[96,34],[97,3],[98,63],[99,103],[100,42],[101,33],[102,63],[103,80]]";
+    var fixedShuffle = JSON.parse(fixedShuffleJson);
+
+    fixedShuffle.forEach(function(t){
+      var orig = t[0], rnd = t[1];
+      var c = g_letpool[orig];
+      g_letpool[orig] = g_letpool[rnd];
+      g_letpool[rnd] = c;
+    });
 }
 
 //---------------------------------------------------------------------------
@@ -110,7 +126,8 @@ function init( iddiv )
             g_letpool.push( whichlt );
     }
 
-    shuffle_pool();
+    // shuffle_pool();
+    shuffle_pool_hacked();
 
     var my_letters   = "";
     var comp_letters = "";
@@ -138,6 +155,23 @@ function takeLetters( existing )
     var letters = g_letpool.slice(0, needed).join("");
     g_letpool.splice(0, needed);
     return letters+existing;
+}
+
+//---------------------------------------------------------------------------
+function setLetters(existing, letters) {
+  var poolsize = g_letpool.length;
+  if (poolsize === 0) {
+    return existing;
+  }
+
+  var needed = g_racksize - existing.length;
+  if (needed > poolsize) {
+    needed = poolsize;
+  }
+
+  var letters = g_letpool.slize(0, needed).join("");
+  g_letpool.splice(0, needed);
+  return letters+existing;
 }
 
 //---------------------------------------------------------------------------
@@ -314,7 +348,7 @@ function checkValidPlacement( placement )
     if (!g_board_empty && oscore == 0 && word.length == placement.length) {
         // No orthogonal words created and no extension to existing
         // word created - this means that the new word isn't connected
-        // to anything. 
+        // to anything.
         return { played:"", msg:t("word not connected.") };
     }
 

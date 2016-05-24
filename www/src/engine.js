@@ -509,7 +509,8 @@ function find_best_move( opponent_rack )
             // the current set of letters
             var word = findBestWord( opponent_rack, letters, ax, ay );
             if (word.score > -1)
-                logit( "found word:"+word.word+" ("+letters+")" );
+                // logit( "found word:"+word.word+" ("+letters+")" );
+                logit('Word:', word.word, "Letters: ", letters.join(','), "Pos:", {ax: ax, ay: ay}, "Dir:", word.xy);
 
             if (board_best_score < word.score) {
                 // If this is better than all the board placements

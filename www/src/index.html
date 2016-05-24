@@ -5,9 +5,12 @@
 <title></title>
 <script type="text/javascript">
 var t1 = +new Date();
-function logit( str )
+function logit()
 {
-    window.console && console.log( str );
+    if(window.console && console.log) {
+      var args = [].slice.call(arguments);
+      console.log.apply(console, args);
+    }
 }
 </script>
 <link rel="stylesheet" type="text/css" href="../css/style.css" media="screen" />

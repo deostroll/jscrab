@@ -734,6 +734,7 @@ function findBestWord( rack, letters, ax, ay )
 //---------------------------------------------------------------------------
 function getBestScore( regex, letters, ax, ay )
 {
+    logit({ax: ax, ay: ay, matches: g_matches_cache});
     var rletmap = {};
     var numjokers = 0;
     for (var i=0; i<letters.length; i++) {

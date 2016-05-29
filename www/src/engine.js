@@ -135,6 +135,7 @@ function init( iddiv )
     g_bui.setPlayerRack( my_letters );
     g_bui.setOpponentRack( comp_letters );
     g_bui.setTilesLeft( g_letpool.length );
+    g_bui.toggleORV();
 }
 
 //---------------------------------------------------------------------------

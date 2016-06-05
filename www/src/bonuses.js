@@ -16,32 +16,31 @@ function BonusesLayout()
 
         var midx = Math.floor(bx/2);
         var midy = Math.floor(by/2);
-        for (i=0; i<midx; i++)
-            for (j=0; j<midy; j++) {
-                var dist = bx*by-i-j;
-                if (dist%8===0)
-                    self.setquad(i, j, 1); // DL
-                else
-                if (dist%11===0)
-                    self.setquad(i, j, 2); // TL
-                else
-                if (dist%7===0)
-                    self.setquad(i, j, 3); // DW
-            }
+    
+        self.setquad(0, 0, 4);
+        self.setquad(midx, 0, 4);
+        self.setquad(0, midy, 4);
 
-        self.setquad( midx, 0, 3 );
-        self.setquad( 0, midy, 3 );
-        self.setquad( 4, 0, 4 );
-        self.setquad( 0, 1, 4 );
-        self.setquad( 4, 4, 0 );
-        self.setquad( 1, 2, 0 );
-        self.setquad( 2, 1, 0 );
-        self.setquad( 1, 1, 3 );
-        self.setquad( 4, 1, 0 );
-        self.setquad( 6, 5, 2 );
-        self.setquad( 8, 2, 0 );
-        self.setquad( 2, 6, 0 );
-        self.setquad( 4, 7, 3 );
+        self.setquad(3, 0, 1);
+        self.setquad(0, 3, 1);
+        self.setquad(6, 2, 1);
+        self.setquad(2, 6, 1);
+
+        self.setquad(7, 3, 1);
+        self.setquad(3, 7, 1);
+        self.setquad(6, 6, 1);
+
+
+        self.setquad(5, 5, 2);
+        self.setquad(5, 5, 2);
+        self.setquad(5, 1, 2);
+        self.setquad(1, 5, 2);
+
+        for(var i = 1; i < midx - 2; i++) {
+          self.setquad(i, i, 3);
+        }
+
+
 
         return self.boardm;
     };
